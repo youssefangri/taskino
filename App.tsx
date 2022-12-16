@@ -7,6 +7,7 @@ import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {AppRoot} from './src/screens';
 import {
   configureDesignSystem,
+  getNavigationBarBGColor,
   getNavigationTheme,
   getStatusBarBGColor,
   getStatusBarStyle,
@@ -15,6 +16,7 @@ import {hydrateStores} from './src/stores';
 import {initServices} from './src/services';
 import {SSProvider} from './src/utils/providers';
 import {StatusBar} from 'expo-status-bar';
+import * as NavigationBar from 'expo-navigation-bar';
 import {useAppearance} from './src/utils/hooks';
 
 LogBox.ignoreLogs(['Require']);
@@ -25,7 +27,8 @@ export default (): JSX.Element => {
 
   const start = useCallback(async () => {
     await SplashScreen.preventAutoHideAsync();
-
+    NavigationBar.setBackgroundColorAsync(getNavigationBarBGColor());
+    await NavigationBar.setVisibilityAsync('hidden')
     await hydrateStores();
     configureDesignSystem();
     await initServices();

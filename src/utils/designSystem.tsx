@@ -14,9 +14,10 @@ import {Appearance} from './types/enums';
 // =============
 
 const colors = {
-  primary: '#5383b8', // blue
-  secondary: '#469c57', // green
+  primary: '#36338C', // blue
+  secondary: '#FC703F', // green
   accent: '#fed330', // yellow
+  bgColor:'#F3F6FF',
   _black: Colors.rgba(20, 20, 20, 1),
   _black2: Colors.rgba(50, 50, 50, 1),
   _white: Colors.rgba(250, 250, 250, 1),
@@ -27,7 +28,7 @@ const themes: Record<Appearance, ThemeColors> = {
   system: {} as any,
   light: {
     textColor: colors._black,
-    bgColor: colors._white,
+    bgColor: colors.bgColor,
     bg2Color: colors._white2,
   },
   dark: {
@@ -51,6 +52,7 @@ export const configureDesignSystem = async (): PVoid => {
   }
 
   Typography.loadTypographies({
+    appTitle: {fontSize: 28, fontWeight: '600', color:"#000000"},
     section: {fontSize: 26, fontWeight: '600'},
   });
 };
@@ -83,7 +85,13 @@ export const getStatusBarStyle = (): StatusBarStyle => {
 export const getStatusBarBGColor = (): string => {
   const {ui} = stores;
   const appearance = ui.isAppearanceSystem ? RNAppearance.getColorScheme() : ui.appearance;
-  return themes[appearance ?? 'light'].bg2Color;
+  return themes[appearance ?? 'light'].bgColor;
+};
+
+export const getNavigationBarBGColor = (): string => {
+  const {ui} = stores;
+  const appearance = ui.isAppearanceSystem ? RNAppearance.getColorScheme() : ui.appearance;
+  return colors.primary;
 };
 
 export const getNavigationTheme = (): Theme => {
@@ -152,9 +160,9 @@ export const screenDefaultOptions = (): NativeStackNavigationOptions => ({
 
 export const tabDefaultOptions = (): BottomTabNavigationOptions => ({
   headerShown: false,
-  tabBarActiveTintColor: Colors.primary,
+  tabBarActiveTintColor: Colors.white,
   tabBarInactiveTintColor: Colors.grey40,
-  tabBarStyle: {backgroundColor: Colors.bgColor, borderTopWidth: 0, elevation: 0},
+  tabBarStyle: {backgroundColor: Colors.primary, borderTopWidth: 0, elevation: 0, paddingBottom:10},
 });
 
 export const getTabBarIcon =

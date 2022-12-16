@@ -4,6 +4,7 @@ import {Main} from './main';
 import {Playground} from './playground';
 import {Settings} from './settings';
 import {Example} from './_screen-sample';
+import {Feed} from './feed';
 
 import {useAppearance} from '../utils/hooks';
 import {screenDefaultOptions, tabDefaultOptions, getTabBarIcon} from '../utils/designSystem';
@@ -14,6 +15,7 @@ export const navio = Navio.build({
     Main,
     Settings,
     Example,
+    Feed,
     Playground: {
       component: Playground,
       options: () => ({
@@ -22,7 +24,7 @@ export const navio = Navio.build({
     },
   },
   stacks: {
-    MainStack: ['Main', 'Example'],
+    MainStack: ['Feed', 'Example'],
     ExampleStack: ['Example'],
   },
   tabs: {
