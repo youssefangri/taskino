@@ -34,3 +34,17 @@ export const HeaderButton: React.FC<Props> = ({label, onPress, ...modifiers}) =>
     </View>
   );
 };
+
+export const AddButton: React.FC<Props> = ({label, onPress, ...modifiers}) => {
+  return (
+    <View {...modifiers}>
+      <Bounceable onPress={onPress}>
+        <View center bg-secondary padding-s2 br40>
+          <Text text65M _white>
+            {label}
+          </Text>
+        </View>
+      </Bounceable>
+    </View>
+  );
+};

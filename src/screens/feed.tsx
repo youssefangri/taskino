@@ -11,10 +11,11 @@ import {NavioScreen} from 'rn-navio';
 import {services, useServices} from '../services';
 import {useStores} from '../stores';
 import {Section} from '../components/section';
-import {BButton, HeaderButton} from '../components/button';
+import {AddButton, BButton, HeaderButton} from '../components/button';
 import {Reanimated2} from '../components/reanimated2';
 import {Row} from '../components/row';
 import {useAppearance} from '../utils/hooks';
+import { CalendarComponent } from '../components/calendar';
 
 export const Feed: NavioScreen = observer(({}) => {
   useAppearance();
@@ -81,15 +82,21 @@ export const Feed: NavioScreen = observer(({}) => {
               <View style={{backgroundColor:"red", borderRadius:25, borderWidth:0, width:40, height:40}}></View>
           </View>
         </View>
-        <View centerV paddingT-15>
-          <Text grey30>
-            May 01, 2022
-          </Text>
-          <Text section>
-            Today
-          </Text>
+        <View centerV paddingT-15 row spread>
+          <View >
+            <Text grey30>
+              May 01, 2022
+            </Text>
+            <Text section>
+              Today
+            </Text>
+          </View>
+          <View>
+            <AddButton label='+ Add Task' />
+          </View>
         </View>
-        <View centerV paddingT-15>
+        <View paddingT-15>
+          <CalendarComponent />
         </View>
       </View>
     </View>
