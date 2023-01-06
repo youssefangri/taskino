@@ -16,6 +16,7 @@ import {Reanimated2} from '../components/reanimated2';
 import {Row} from '../components/row';
 import {useAppearance} from '../utils/hooks';
 import { CalendarComponent } from '../components/calendar';
+import { Task } from '../components/task';
 
 export const Feed: NavioScreen = observer(({}) => {
   useAppearance();
@@ -25,6 +26,14 @@ export const Feed: NavioScreen = observer(({}) => {
 
   // State (local)
   const [loading, setLoading] = useState(false);
+  const [taskItems, setTaskItems] = useState([
+    {
+      title:"Task 1",
+      desc:'Remember me to edit nav bar icons and lables',
+      done: true
+    }
+  ])
+
 
   // API Methods
   const getCounterValue = useCallback(async () => {
@@ -97,6 +106,15 @@ export const Feed: NavioScreen = observer(({}) => {
         </View>
         <View paddingT-15>
           <CalendarComponent />
+        </View>
+        <View marginT-30>
+          {
+            taskItems.map((item,index)=>{
+              return(
+                  <Task key={index} title={item.title} desc={item.desc} done={item.done}/>
+              )
+            })
+          }
         </View>
       </View>
     </View>

@@ -54,6 +54,8 @@ export const configureDesignSystem = async (): PVoid => {
   Typography.loadTypographies({
     appTitle: {fontSize: 28, fontWeight: '600', color:"#000000"},
     section: {fontSize: 26, fontWeight: '600'},
+    taskTitle:{fontSize: 16, fontWeight: '600', color:"#000000"},
+    taskDesc:{fontSize: 11, fontWeight: '400', color:"#A58B8B"}
   });
 };
 
