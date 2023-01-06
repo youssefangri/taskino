@@ -21,18 +21,18 @@ import { Task } from '../components/task';
 export const Feed: NavioScreen = observer(({}) => {
   useAppearance();
   const navigation = useNavigation();
-  const {counter, ui} = useStores();
+  const {counter, ui, taskStore} = useStores();
   const {t, api, navio} = useServices();
 
   // State (local)
   const [loading, setLoading] = useState(false);
-  const [taskItems, setTaskItems] = useState([
-    {
-      title:"Task 1",
-      desc:'Remember me to edit nav bar icons and lables',
-      done: true
-    }
-  ])
+  // const [taskItems, setTaskItems] = useState([
+  //   {
+  //     title:"Task 1",
+  //     desc:'Remember me to edit nav bar icons and lables',
+  //     done: true
+  //   }
+  // ])
 
 
   // API Methods
@@ -109,7 +109,7 @@ export const Feed: NavioScreen = observer(({}) => {
         </View>
         <View marginT-30>
           {
-            taskItems.map((item,index)=>{
+            taskStore.tasks.map((item,index)=>{
               return(
                   <Task key={index} title={item.title} desc={item.desc} done={item.done}/>
               )
